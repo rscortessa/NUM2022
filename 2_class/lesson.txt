@@ -7,3 +7,6 @@
 
 * DO (DEFINITE UNDEFINED), LOOK FOR EXIT
 * .OR. (TWO CONDITION TOGETHER)
+
+*Terminator
+https://www.tecmint.com/terminator-a-linux-terminal-emulator-to-manage-multiple-terminal-windows/
