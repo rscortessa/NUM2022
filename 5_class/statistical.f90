@@ -22,7 +22,6 @@ CONTAINS
            ENDIF
         END DO
     CLOSE(u)
-    PRINT*,i
   END FUNCTION initialize
 
   
@@ -42,7 +41,6 @@ CONTAINS
     DO WHILE(j<=i)
        READ(u,'(T6f7.5,T14f9.3)',IOSTAT=ios)A,B
        IF (ios==0) THEN
-          PRINT*,A,B
           T(j)=A
           W(j)=B
           j=j+1
