@@ -10,7 +10,6 @@ CONTAINS
     IMPLICIT NONE
     REAL, INTENT(INOUT) :: dx,a,int
     INTEGER,INTENT(INOUT) :: n
-    REAL :: sum
     INTEGER :: op
     IF(op==3) THEN
        int=(f(a)+f(a+n*dx))*dx/2.0
@@ -39,18 +38,15 @@ CONTAINS
     INTEGER,INTENT(IN) :: n,u
     INTEGER,INTENT(INOUT) :: method
     REAL :: sum
-    INTEGER :: i,m
+    INTEGER :: m
     REAL :: dx,c
     method=0
     dx=(b-a)/(1.0*n)
     c=a
     m=n
-    
+    sum=0
     CALL simple(m,dx,c,sum,method)
-
-    
     WRITE(u,*)sum,n,sum-EXP(1.0)+1.0000
-    PRINT*,sum,n
     IF(ABS(sum-antsum)<eps) THEN
        RETURN
     ELSE
