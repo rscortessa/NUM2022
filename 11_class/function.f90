@@ -1,11 +1,14 @@
-MODULE function
+
+MODULE functions
+  CONTAINS
   REAL FUNCTION f(x,t) RESULT(r)
-    REAL, INTENT(INT) :: x,t
-    r=x*2+t
+    REAL, INTENT(IN) :: x,t
+    r=x
   END FUNCTION F
   
   REAL FUNCTION h(t) RESULT(r)
-    REAL, INTENT(INT) :: t
-    r=t
+    REAL, INTENT(IN) :: t
+    r=EXP(t)
   END FUNCTION h
-END MODULE function
+  
+END MODULE functions
