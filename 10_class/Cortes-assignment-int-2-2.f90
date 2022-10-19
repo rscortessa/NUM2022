@@ -80,27 +80,30 @@ CONTAINS
 
   
   
-  RECURSIVE FUNCTION integration(a,b,n,u,eps,antsum,method) RESULT(sum)
+  RECURSIVE FUNCTION integration(a,b,n,u,eps,antsum,anteps,method) RESULT(sum)
     IMPLICIT NONE
     REAL,INTENT(IN) :: a,b,eps
-    REAL,INTENT(INOUT) ::antsum
+    REAL,INTENT(INOUT) ::antsum,anteps
     INTEGER,INTENT(IN) :: n,u,method
-    REAL :: sum
+    REAL :: sum,auxeps
     INTEGER :: m,mt
     REAL :: dx,c
     dx=(b-a)/(1.0*n)
     c=a
     m=n
-    sum=0
+    sum=0.0
     mt=method
     CALL nmethods(m,dx,c,sum,mt)
-    WRITE(u,*)sum,n,sum-EXP(1.0)+1.0000
-    IF(ABS(sum-antsum)<eps) THEN
+    WRITE(u,*)sum,n,sum-EXP(b)+1.0000
+    auxeps=ABS(sum-antsum)
+    PRINT*,anteps,auxeps
+    IF(auxeps<eps .OR. anteps< auxeps ) THEN
        RETURN
     ELSE
        antsum=sum
+       anteps=auxeps
        mt=method
-    sum=integration(a,b,2*n,u,eps,antsum,mt)
+       sum=integration(a,b,2*n,u,eps,antsum,anteps,mt)
     ENDIF    
   END FUNCTION integration
 

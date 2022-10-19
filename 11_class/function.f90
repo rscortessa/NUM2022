@@ -17,13 +17,18 @@ MODULE lotka
   CONTAINS
   REAL FUNCTION fx(x,y,t) RESULT(r)
     REAL, INTENT(IN) :: x,y,t
-    r=x-x*y
+    REAL :: a
+    a=1
+    b=2
+    r=b*x-a*x*y
     
   END FUNCTION Fx
 
    REAL FUNCTION fy(x,y,t) RESULT(r)
     REAL, INTENT(IN) :: x,y,t
-    r=x*y-y
+    REAL :: b
+    b=1
+    r=b*x*y-y
   END FUNCTION Fy
   
   REAL FUNCTION hx(t) RESULT(r)

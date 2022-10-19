@@ -1,6 +1,6 @@
 PROGRAM numint1
   USE simpleint
-  REAL ::a,b,eps,sum
+  REAL ::a,b,eps,sum,epsexp
   INTEGER :: n,ios,method,i
   INTEGER, DIMENSION(4) :: u
   CHARACTER(50),DIMENSION(4) :: name
@@ -14,10 +14,11 @@ PROGRAM numint1
   sum=0
   method=0
   DO i=1,4
-  method=i-1
-  OPEN(UNIT=u(i),IOSTAT=ios,FILE=name(i),STATUS='replace',ACTION='write')
-  sum=integration(a,b,n,u(i),eps,sum,method)  
-  CLOSE(u(i))
+     method=i-1
+     epsexp=2147483647
+     OPEN(UNIT=u(i),IOSTAT=ios,FILE=name(i),STATUS='replace',ACTION='write')
+     sum=integration(a,b,n,u(i),eps,sum,epsexp,method)  
+     CLOSE(u(i))
   END DO
 
 
