@@ -19,26 +19,31 @@ CONTAINS
     REAL, INTENT(IN) :: x
     y=x**(1/3.0)
   END FUNCTION finv
-  
+
+  REAL FUNCTION N(x,s,u) RESULT(y)
+    REAL, INTENT(IN) :: x,s,u
+    y=1/(SQRT(8.*ATAN(1.D0))*s)*EXP(-(x-u)**2/(2.0*s**2))
+  END FUNCTION N
   REAL FUNCTION f(x) RESULT(y)
     REAL, INTENT(IN) :: x
-    y=3*x**2
+    y=15*x**2*N(x,0.25,-0.5)+13*N(x,0.3,-1.5)+7*N(x,1.,3.)
   END FUNCTION f
 
   
-  SUBROUTINE rejection(n,filename,seed)  
-    INTEGER, INTENT(IN) :: n
-    INTEGER, INTENT(IN) :: seed
+  SUBROUTINE rejection(n,filename,seed,a,b)  
+    INTEGER, INTENT(IN) :: n,seed
+    REAL, INTENT(IN) :: a,b
     REAL :: fmax,x,r,s
     INTEGER :: i,ios,u
     CHARACTER(len=*) filename
     CALL initialize(seed)
-    fmax=3.0 !choose your max
+    fmax=17.5 !choose your max
     i=0
     u=10
     OPEN(UNIT=u,IOSTAT=ios,FILE=filename,STATUS='replace',ACTION='write')
     DO WHILE(i<n)
        CALL RANDOM_NUMBER(x)
+       x=a+(b-a)*x
        CALL RANDOM_NUMBER(r)
        s=f(x)/fmax
        IF (s>=r) THEN
