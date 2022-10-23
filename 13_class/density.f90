@@ -6,8 +6,7 @@ PROGRAM assig13
   REAL, DIMENSION(5000) :: de
   REAL, DIMENSION(5000,2) :: density
   REAL, DIMENSION(5000,1) :: d
-  !OPEN(UNIT=u,IOSTAT=ios,FILE="density.dat",STATUS='replace',ACTION='write')
-  !OPEN(UNIT=c,IOSTAT=ios,FILE="real.dat",STATUS='replace',ACTION='write')
+  REAL, DIMENSION(:,:), ALLOCATABLE :: hist
  
   m=5000
   u=10
@@ -32,13 +31,17 @@ PROGRAM assig13
   print*,l
   OPEN(UNIT=10,IOSTAT=ios,file="dummy.txt")
   PRINT*,ios
-  CALL histogram(de,l,10)
+  CALL histogram(de,hist,l,10)
   CLOSE(10)
+  DEALLOCATE(hist)
+   OPEN(UNIT=u,IOSTAT=ios,FILE="density.dat",STATUS='replace',ACTION='write')
+!  OPEN(UNIT=c,IOSTAT=ios,FILE="real.dat",STATUS='replace',ACTION='write')
+  
   DO i=1,m
    !  WRITE(u,*)density(i,:)
     ! WRITE(c,*)a+i*dx,f(a+i*dx)
   END DO
-  !CLOSE(u)
+  CLOSE(u)
   !CLOSE(v)
   !CLOSE(c)
   !CALL KDE("kernel.dat",de,100000,-10.,10.)
