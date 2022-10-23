@@ -134,15 +134,17 @@ CONTAINS
   END FUNCTION diaconis
   
   
-  SUBROUTINE histogram(T,hist)
+  SUBROUTINE histogram(T,l,u)
     REAL, DIMENSION (:), INTENT(IN) :: T
-    REAL, DIMENSION(:,:) :: hist
-    REAL :: dx,min,max,x,sum
+    INTEGER, INTENT(IN) ::l,u
+    REAL, DIMENSION(:,:), ALLOCATABLE :: hist
+    REAL :: dx,min,max,x
     INTEGER :: M,N,j,i
     !INITIALIZE VARIABLES
+    ALLOCATE(hist(l,2))
     max=MAXVAL(T)
     min=MINVAL(T)
-    N=size(hist(:,1))
+    N=l
     M=size(T)
     dx=(max-min)/(N*1.0)
     !CREATE THE HISTOGRAM
@@ -162,11 +164,12 @@ CONTAINS
        ENDIF
     END DO
     hist(:,2)=hist(:,2)/(M*dx)
-    sum=0
+    DEALLOCATE(hist)
     DO i=1,N
-       sum=sum+hist(i,2)
+       WRITE(u,*) hist(i,:)
     END DO
   END SUBROUTINE histogram
+  
 
   REAL FUNCTION kernel(x,s,points) RESULT(px)
     REAL, INTENT(IN) :: x,s

@@ -10,7 +10,8 @@ CONTAINS
     IMPLICIT NONE
     REAL,INTENT(INOUT) :: a,b,eps,converg
     REAL,INTENT(INOUT) ::antsum
-    INTEGER,INTENT(IN) :: n,u,j
+    INTEGER,INTENT(INOUT) :: n,u
+    INTEGER,INTENT(IN) :: j
     REAL :: sum
     INTEGER :: i
     REAL :: dx
@@ -31,7 +32,8 @@ CONTAINS
     WRITE(u,*)sum,n,ABS(sum-EXP(b)+EXP(a))
     converg=sum-antsum    
     antsum=sum
-    sum=simint(a,b,2*n,u,eps,antsum,converg,j+1)
+    n=2*n
+    sum=simint(a,b,n,u,eps,antsum,converg,j+1)
     ENDIF
     ENDIF
     

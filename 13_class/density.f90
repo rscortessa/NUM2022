@@ -3,11 +3,12 @@ PROGRAM assig13
   IMPLICIT NONE
   INTEGER :: l,m,seed,u,v,c,i,ios
   REAL :: a,b,dx
-
-  REAL, DIMENSION(:,:), ALLOCATABLE :: hist
   REAL, DIMENSION(5000) :: de
   REAL, DIMENSION(5000,2) :: density
   REAL, DIMENSION(5000,1) :: d
+  !OPEN(UNIT=u,IOSTAT=ios,FILE="density.dat",STATUS='replace',ACTION='write')
+  !OPEN(UNIT=c,IOSTAT=ios,FILE="real.dat",STATUS='replace',ACTION='write')
+ 
   m=5000
   u=10
   v=40
@@ -21,28 +22,26 @@ PROGRAM assig13
   d=store(m,1,"data.dat")
   de=d(:,1)
   !SORTING THE ARRAY
+  
   CALL sort(de)
-  !CALCULATE THE EMPIRICAL DISTRIBUTION
+   !CALCULATE THE EMPIRICAL DISTRIBUTION
   CALL CEDF(de,density)
   !CALCULATE THE HISTOGRAM
+  
   l=diaconis(de)
-  ALLOCATE(hist(l,2))
-  CALL histogram(de,hist)
-  OPEN(UNIT=u,IOSTAT=ios,FILE="density.dat",STATUS='replace',ACTION='write')
-  OPEN(UNIT=v,IOSTAT=ios,FILE="histogram.dat",STATUS='replace',ACTION='write')
-  OPEN(UNIT=c,IOSTAT=ios,FILE="real.dat",STATUS='replace',ACTION='write')
+  print*,l
+  OPEN(UNIT=10,IOSTAT=ios,file="dummy.txt")
+  PRINT*,ios
+  CALL histogram(de,l,10)
+  CLOSE(10)
   DO i=1,m
-     WRITE(u,*)density(i,:)
-     WRITE(c,*)a+i*dx,f(a+i*dx)
-     IF(i<=l) THEN
-        PRINT*,"GOOD2"
-        WRITE(v,*)hist(i,:)
-     ENDIF
+   !  WRITE(u,*)density(i,:)
+    ! WRITE(c,*)a+i*dx,f(a+i*dx)
   END DO
-  CLOSE(v)
-  CLOSE(u)
-  CLOSE(c)
-  CALL KDE("kernel.dat",de,100000,-10.,10.)
-  DEALLOCATE(hist)
+  !CLOSE(u)
+  !CLOSE(v)
+  !CLOSE(c)
+  !CALL KDE("kernel.dat",de,100000,-10.,10.)
+ 
   
 END PROGRAM assig13
