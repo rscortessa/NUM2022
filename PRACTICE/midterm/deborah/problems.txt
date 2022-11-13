@@ -1,0 +1,134 @@
+
+Assignement one:
+
+ Write a Fortran program to be able to accomplish the following tasks:
+ 1) calculate the following equation
+   x = -b/(2a + 3c**a)
+   (where a, b and c are read from the screen at execution time)
+ 2) write on the screen a, b, c and x.
+ 3) calculate y = a + b + c + x
+ 4) write on the screen y
+
+Assignement two:
+
+ Write a program that takes a positive integer number A as an input and
+ calculates the maximum number N such that the sum of the first even
+ numbers up to N is greater than A.
+ Example, if A equal to 23:
+                2=2
+               2+4=6
+              2+4+6=12
+             2+4+6+8=20
+           2+4+6+8+10=30
+ In this case N=10
+ The program must to be able to take the integer number A as input during
+ running time, assign to a variable and print on the screen N as a result.
+ Optional
+ Write a program that takes a positive integer number A as an input and
+ calculates the maximum prime number N such that the sum of the first prime
+ numbers up to N is greater than A.
+ Example, if A equal to 23:
+                 1=1
+                1+2=3
+               1+2+3=6
+              1+2+3+5=11
+             1+2+3+5+7=18
+            1+2+3+5+7+11=29
+ In this case N=11
+ The program must to be able to take the integer number A as input during
+ running time, assign to a variable and print on the screen N as a result.
+
+Assignement three:
+
+ Write a program that, taken a positive integer number N>=1 as
+ input, calculates the N-step element of the sequence T of the
+ modify Tribonacci numbers defined by:
+
+   T(0) = 0
+   T(1) = 1
+   T(2) = 2
+   T(K) = (T(K-1) + T(K-2) + T(K-3))/2 (For K >=3)
+
+Assignement four:
+
+ Fill arrays with random numbers like in:
+
+  ! Fragment of code from exercise text
+  call random_number(arr1)
+  call random_number(arr2)
+  call random_number(rind)
+  arr1 = arr1 * 1000_8
+  arr2 = arr2 * 1000_8
+  ind = min(max(int(rind * 100_4),1),100)
+  do i = 1, ind(1)
+    i1 = ind(i)
+    i2 = abs(ind(i)-100)
+    arr2(i1) = arr1(i2)
+  end do
+  ! End fragment of code from exercise text
+
+ 1) Find all elements common to both the arrays and print a message
+    indicating, for each common element, the index occupied by the first
+    and second array.
+ 2) Create a new array with the common elements (arr3).
+ 3) Calculate the median of the arrays (arr1, arr2, arr3)
+ 4) Calculate the standard deviation of the arrays (arr1, arr2, arr3)
+ 5) Calculate the root mean square difference (average difference) between
+    the two arrays (arr1 and arr2)
+
+Assignement five:
+
+ Write a program that reads, from the file data.dat, the monthly
+ precipitation data for two different years for Boulder (Colorado,
+ US) and calculates:
+
+ 1) Seasonal means for Winter 2002 and 2013
+ 2) Annual mean for 2013
+ 3) The Annual and Seasonal means calculated in point 1 and 2
+    have to be written in a file called “YourFirstName.dat”
+ 4) Take care of the right formatting writing in the output file
+    only the significative decimals
+
+Assignement six:
+
+ Root finding exercise
+ Find a real root of f(x) = exp(x) - 2 with eps = 1.0e-6
+ 1) Read at running time two initial guesses and check if the root
+    is bracketed
+ 2) Write a program with
+        Subroutine Bisection(.....) and RegulaFalsi(....)
+        Function func(x)
+ 3) Write the output in a file formatted as follow:
+    count   a     f(a)    b    f(b)     c    f(c)
+       1   ..     ....   ..    ....    ..    ....
+       2   ..     ....   ..    ....    ..    ....
+     ...
+
+Assignement seven:
+
+ Root finding exercise
+
+ Find a real root of f(x) = x**2 - 2 with precision eps=1.0e-8
+ 1) Write a program that includes a Subroutine “Newton” and two
+    functions f(x) and f’(x)
+ 2) The program should be able to read a number of guesses from a
+    file “guesses.txt” where in the first row it is written the number
+    of guesses to read from the file. The guesses have to be assigned
+    to an allocatable array.
+ 3) For each guess in “guesses.txt”, the program have to write, in a
+    new file “YourFirstName_Newton.txt”, the initial guess, the root
+    and the number of iterations needed to find that particular root.
+
+Assignement eight:
+
+ Root finding exercise
+
+ 1) Find a real root of f(x) = sqrt(x)cos(x**2) using the Secant method.
+ 2) Write a mixed Newton-Bisection method subroutine. Whenever
+    Newton is not converging fast enough or is failing, take a
+    bisection step (optional)
+ 3) First guess: of your choice, Accuracy: eps = 1e-8
+ 4) Write a program with:
+      *) Subroutine Secant(...)
+      *) Subroutine New_Bisec(...)
+      *) Function f(x) and f'(x)

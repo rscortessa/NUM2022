@@ -1,0 +1,14 @@
+Monthly mean precipitation (Boulder Colorado)
+idx     months	prp2002   prp2013   seasons
+01      Jan      1.07      0.27      Win
+02      Feb      0.44      1.13      Win
+03      Mar      1.50      1.72      Spr
+04      Apr      0.20      4.14      Spr
+05      May      3.20      2.66      Spr
+06      Jun      1.18      0.61      Sum
+07      Jul      0.09      1.03      Sum
+08      Aug      1.44      1.40      Sum
+09      Sep      1.52      8.16      Fal
+10      Oct      2.44      2.24      Fal
+11      Nov      0.78      0.29      Fal
+12      Dec      0.02      0.50      Win
